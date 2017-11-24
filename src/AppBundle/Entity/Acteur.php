@@ -45,7 +45,7 @@ class Acteur
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="text")
+     * @ORM\Column(name="picture", type="text")
      */
     private $photo;
 

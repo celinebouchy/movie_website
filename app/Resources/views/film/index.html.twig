@@ -33,7 +33,7 @@
                 <td><img id="img_movie" src="{{ film.photo }}"></td>
                 <td id="title"><a href="{{ path('film_show', { 'numFilm': film.numFilm }) }}">{{ film.titre }}</a></td>
                 <td id="desc">{{ film.description }}</td>
-                <td id="date">{{ film.dateSortie|date("d/m/Y") }}</td>
+                <td id="date">{{ film.dateSortie }}</td>
                 <td id="time">{% if film.duree %}{{ film.duree|date('H:i:s') }}{% endif %}</td>
 
                 <!-- Récupération des catégories pour le film courant -->

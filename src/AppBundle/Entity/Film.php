@@ -36,9 +36,9 @@ class Film{
     private $description;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="dateSortie", type="date")
+     * @ORM\Column(name="dateSortie", type="integer")
      */
     private $dateSortie;
 
@@ -52,7 +52,7 @@ class Film{
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="text", nullable=true)
+     * @ORM\Column(name="url", type="text", nullable=true)
      */
     private $photo;
 
@@ -70,8 +70,8 @@ class Film{
      * Récupération des catégories pour un film précis
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Categorie", inversedBy="films")
-     * @ORM\JoinTable(joinColumns={@ORM\JoinColumn(name="film_id", referencedColumnName="numFilm")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="categorie_id", referencedColumnName="idCat")}
+     * @ORM\JoinTable(joinColumns={@ORM\JoinColumn(name="numFilm", referencedColumnName="numFilm")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="idCat", referencedColumnName="idCat")}
      *      )
      */
     private $categories;
@@ -153,14 +153,13 @@ class Film{
     public function setDateSortie($dateSortie)
     {
         $this->dateSortie = $dateSortie;
-
         return $this;
     }
 
     /**
      * Get dateSortie
      *
-     * @return \DateTime
+     * @return integer
      */
     public function getDateSortie()
     {
