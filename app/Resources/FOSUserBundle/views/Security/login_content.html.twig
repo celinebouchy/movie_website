@@ -1,0 +1,45 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div id="danger_alert_login_content" class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+    </div>
+{% endif %}
+
+<a href=" {{ path('homepage') }} ">Accueil</a> > Se connecter<br><br>
+
+<div id="info_alert_login_content" class="alert alert-info">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <p>Vous n'avez pas encore de compte ? <a href=" {{ path('fos_user_registration_register') }} ">Inscrivez-vous maintenant</a></p>
+</div>
+
+<form id="authentification" action="{{ path("fos_user_security_check") }}" method="post">
+
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+    <fieldset>
+        <legend>Authentification</legend>
+
+        <!-- Login -->
+        <label for="username">{{ 'security.login.username'|trans }}</label>
+        <input id="login" type="text" id="username" name="_username" value="{{ last_username }}" /><br>
+
+        <!-- Mot de passe -->
+        <label for="password">{{ 'security.login.password'|trans }}</label>
+        <input id="mdp" type="password" name="_password" /><br><br>
+
+        <!-- Bouton "Se souvenir de moi" -->
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+        <!-- Mot de passe oublié -->
+        <a id="lost_mdp" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a><br>
+
+        <!-- Bouton "Connexion" -->
+        <input id="btnConnexion" type="submit" value="{{ 'security.login.submit'|trans }}" />
+
+    </fieldset>
+</form>

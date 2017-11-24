@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href=" {{ path('film_index') }} ">Liste des films</a> > Détails du film<br>
+
+    <h1>Détails du film</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <!-- Édition -->
+        <div id="btn_edit">
+            <a href="{{ path('film_edit', { 'numFilm': film.numFilm }) }}"><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Éditer</button></a>
+        </div>
+
+         <!-- Suppression -->
+        <div id="btn_sup">
+            {{ form_start(delete_form) }}
+                <a href="{{ path('film_delete', { 'numFilm': film.numFilm }) }}"><button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></a>
+            {{ form_end(delete_form) }}
+        </div>
+
+    {% endif %}
+
+    <!-- Retour -->
+    <div id="link_back">
+        <a href="{{ path('film_index') }}">Retour à la liste des films</a>
+    </div><br><br>
+
+    <table id="detail_films" class="table table-bordered table-inverse">
+        <tbody>
+            <tr>
+                <th class="content_table_details">Titre</th>
+                <td>{{ film.titre }}</td>
+            </tr>
+            <tr>
+                <th id="content_table_couverture">Couverture</th>
+                <td><img id="img_movie" src="{{ film.photo }}"></td>
+            </tr>
+
+            <tr>
+                <th id="content_table_description">Description</th>
+                <td>{{ film.description }}</td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Acteurs</th>
+                <td>
+                    {% for acteur in film.getActeurs() %}
+                        <a href="{{ path('acteur_show', { 'idActeur': acteur.idActeur }) }}">{{ acteur.prenomActeur }} {{ acteur.nomActeur }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Date de sortie</th>
+                <td>{{ film.dateSortie|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Durée</th>
+                <td>{% if film.duree %}{{ film.duree|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th class="content_table">Genre</th>
+                <td id="film_categories">
+                    {% for categorie in film.getCategories() %}
+                        <a href="{{ path('categorie_show', { 'idCat': categorie.idCat }) }}">{{ categorie.nomCat }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

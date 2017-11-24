@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href=" {{ path('acteur_index') }} ">Liste des acteurs</a> > Détails de l'acteur<br>
+
+    <h1>Détails de l'acteur</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <!-- Édition -->
+        <div id="btn_edit">
+            <a href="{{ path('acteur_edit', { 'idActeur': acteur.idActeur }) }}"><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Éditer</button></a>
+        </div>
+
+         <!-- Suppression -->
+        <div id="btn_sup">
+            {{ form_start(delete_form) }}
+                 <a href="{{ path('acteur_delete', { 'idActeur': acteur.idActeur }) }}"><button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></a>
+            {{ form_end(delete_form) }}
+        </div>
+
+    {% endif %}
+
+    <!-- Retour -->
+    <div id="link_back">
+        <a href="{{ path('acteur_index') }}">Retour à la liste des acteurs</a>
+    </div><br><br>
+
+    <table id="detail_acteurs" class="table table-bordered table-inverse">
+        <tbody>
+            <tr>
+                <th id="content_table_photo">Photo</th>
+                <td><img id="img_acteur" src="{{ acteur.photo }}"></td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Nom</th>
+                <td>{{ acteur.nomActeur }}</td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Prénom</th>
+                <td>{{ acteur.prenomActeur }}</td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Nom complet</th>
+                <td>{{ acteur.nomComplet }}</td>
+            </tr>
+            <tr>
+                <th class="content_table_details">Films</th>
+                <td>
+                    {% for film in acteur.getFilms() %}
+                        <a href="{{ path('film_show', { 'numFilm': film.numFilm }) }}">{{ film.titre }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

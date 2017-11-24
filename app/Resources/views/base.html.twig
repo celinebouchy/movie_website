@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Videoclubix 2.0{% endblock %}</title>
+
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- Fichiers personnels -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/style.css') }}" />
+
+        <!-- Librairie jQuery + jQuery UI -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/jquery-ui.css') }}" />
+        <script src="{{ asset('bundles/app/js/jquery-3.1.1.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/jquery-ui.js') }}"></script>
+
+        <!-- Fichier JS personnel + Plugin alert -->
+        <script src="{{ asset('bundles/app/js/appel_plugin.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/jquery.bsAlerts.js') }}"></script>
+
+        <!-- Fichiers Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/fonts/glyphicons-halflings-regular.ttf') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/fonts/glyphicons-halflings-regular.woff') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/fonts/glyphicons-halflings-regular.woff2') }}" />
+
+    </head>
+    <body id="page-top">
+
+        <h1 class="panel-heading">Videoclubix 2.0</h1>
+
+        {% block header %}
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+
+                    <!-- Accueil -->
+                        <li>
+                            <a id="home" class="navbar-brand" href=" {{ path('homepage') }} ">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </a>
+                        </li>
+
+                        <!-- Location -->
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %} <!-- Si l'utilisateur est connecté -->
+                            <li>
+                                <a href=" {{ path('film_index') }} ">
+                                    <span class="glyphicon glyphicon-film"></span> Liste des films
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{ path('acteur_index') }} ">
+                                    <span class="glyphicon glyphicon-bullhorn"></span> Liste des acteurs
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" {{ path('categorie_index') }} ">
+                                    <span class="glyphicon glyphicon-tag"></span> Liste des genres
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %} <!-- Si l'utilisateur n'est pas connecté -->
+
+                            <!-- Inscription -->
+                            <li>
+                                <a href=" {{ path('fos_user_registration_register') }} ">
+                                    <span class="glyphicon glyphicon-user"></span> Inscription
+                                </a>
+                            </li>
+
+                            <!-- Connexion -->
+                            <li>
+                                <a href=" {{ path('fos_user_security_login') }} ">
+                                    <span class="glyphicon glyphicon-cog"></span> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+
+                            <!-- Déconnexion -->
+                            <li>
+                                <a href=" {{ path('fos_user_security_logout') }} " onclick="alert('Vous allez être déconnecté.')">
+                                    <span class="glyphicon glyphicon-off"></span> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            </li>
+
+                            <li id="log_as">
+                                <a href=" {{ path('espace_membre') }} ">
+                                    <span class="glyphicon glyphicon-info-sign"></span> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                </a>
+                            </li>
+
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        {% endblock %}
+
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+        {% block footer %}
+            <footer>
+                <p class="panel-footer text-muted">
+                    <b>© 2017 Céline Bouchy.</b> Tous droits réservés.
+                </p>
+            </footer>
+
+            <div class="nav pull-right scroll-top">
+                <a id="top" href="#page-top" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a>
+            </div>
+        {% endblock %}
+
+    </body>
+</html>

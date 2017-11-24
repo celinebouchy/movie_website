@@ -1,0 +1,6 @@
+Erreur : SQLSTATE[HY000]: General error: 1364 Field '' doesn't have a default value
+
+Solution : Modifier le fichier my.ini de MySQL
+
+- ligne 69 : sql-mode:"NO_ENGINE_SUBSTITUTION"
+- redémarrer le server

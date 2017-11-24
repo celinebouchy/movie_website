@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href=" {{ path('homepage') }} ">Accueil</a> > Profil<br><br>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <fieldset class="fieldset_margin">
+            <legend>Espace membre</legend>
+            <div id="wrapper">
+                <div>
+                    <ul>
+                        <li><a href="{{ path('fos_user_profile_show') }}">Voir mon profil</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Editer mon profil</a></li>
+                        <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
+                        <li><a href="{{ path('fos_user_resetting_request') }}">Réinitialiser mon mot de passe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+    {% endif%}
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

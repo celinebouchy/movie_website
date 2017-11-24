@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Création d'un acteur</legend>
+
+        {{ form_widget(form) }}
+
+        <div>
+            <a href="{{ path('acteur_new') }}"><button type="submit" class="btn btn-warning btnLocation">Créer</button></a>
+            <a href="{{ path('acteur_index') }}">Retour à la liste</a>
+        </div>
+
+    </fieldset>
+
+    {{ form_end(form) }}
+
+{% endblock %}

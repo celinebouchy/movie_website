@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<!-- Fil d'ariane -->
+	<a href=" {{ path('homepage') }} ">Accueil</a> > Location<br><br>
+
+	<h2>Liste des films</h2>
+
+	<table id="liste_film" class="table table-bordered table-inverse">
+		<thead>
+			<th class="content_table">Couverture</th>
+			<th class="content_table">Titre</th>
+			<th class="content_table">Description</th>
+			<th class="content_table">Date de sortie</th>
+			<th class="content_table">Durée</th>
+			<th class="content_table">Action</th>
+			<th class="content_table">Acteurs</th>
+
+		</thead>
+
+		{{dump(films)}}
+
+		{% for film in films %}
+
+				<tbody>
+					<td><img id="img_movie" src="{{ film.photo }}"></td>
+					<td id="title">{{ film.titre }}</td>
+					<td id="desc">{{ film.description }}</td>
+					<td id="date">{{ film.dateSortie|date("d/m/Y") }}</td>
+					<td id="time">{{ film.duree|date("H:i:s") }}</td>
+
+					<!-- Récupération des acteurs pour le film courant -->
+					<td>
+	                    {% for acteur in film.getActeurs() %}
+	                        {{ acteur.prenomActeur }} {{ acteur.nomActeur }}
+	                    }
+	                    {% endfor %}
+	                </td>
+					<td>
+					   <button id="btnLocation">Louer ce film</button>
+					</td>
+
+					<div id="myModal" class="modal">
+						<!-- Modal content -->
+						<div class="modal-content">
+							<div id="success_alert_location_film" class="alert alert-success">
+						        <a href="#" class="close" data-dismiss="alert">&times;</a>
+						        <p>Vous venez de louer ce film, merci !</p>
+						    </div>
+						</div>
+					</div>
+
+				</tbody>
+
+		{% endfor %}
+
+	</table>
+{% endblock %}

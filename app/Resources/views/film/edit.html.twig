@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(edit_form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Édition d'un film</legend>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <!-- Edition du film -->
+            {{ form_widget(edit_form) }}
+                <a href="{{ path('film_edit', { 'numFilm': film.numFilm }) }}"><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Éditer</button></a>
+            {{ form_end(edit_form) }}
+
+            <!-- Suppression du film -->
+            <div id="btnSupFilm_admin">
+                {{ form_start(delete_form) }}
+                    <a href="{{ path('film_delete', { 'numFilm': film.numFilm }) }}"><button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></a>
+                {{ form_end(delete_form) }}
+            </div>
+
+        {% endif %}
+
+        <!-- Retour -->
+        <div id="link_back">
+            <a href="{{ path('film_index') }}">Retour à la liste</a>
+        </div>
+    </fieldset>
+
+{% endblock %}

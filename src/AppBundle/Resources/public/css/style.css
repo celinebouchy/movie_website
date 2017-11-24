@@ -1,0 +1,370 @@
+/* ====================================
+            BASE.HTML.TWIG
+======================================= */
+
+body{
+	text-align: left;
+	background-color: whitesmoke;
+	padding: 5px;
+}
+
+footer{
+	text-align:center;
+	margin-top: 400px;
+}
+
+/* --- Menu --- */
+
+#home{
+    border-right: 2px solid whitesmoke;
+}
+
+#log_as{ /* Connecté en tant que */
+    margin-left: 720px;
+}
+
+/* --- Ancre bas de page  --- */
+
+.pull-right{
+    float: right !important;
+}
+
+.scroll-top{
+    position: fixed;
+    bottom: 4%;
+    right: 1%;
+    z-index: 100;
+}
+
+.scroll-top a:hover{
+    border: 1px solid #fff;
+    outline: 0;
+    color: #fff;
+    background: grey;
+}
+
+.scroll-top a:link,
+.scroll-top a:visited{
+    display: inline-block;
+    padding: 5px 15px;
+    color: #fff;
+    border: 1px solid lightgrey;
+    background: lightgrey;
+    font-size: 30px;
+}
+
+.glyphicon-chevron-up{ /* Flèche ancre */
+    font-size: 30px;
+}
+
+.panel-heading{ /* Titre de la page */
+	text-align: center;
+	background-color: lightgrey;
+	border: 2px solid black !important;
+}
+
+/* ====================================
+            INDEX.HTML.TWIG
+======================================= */
+
+#content{ /* Contenu de la page */
+	padding: 5px;
+}
+
+#home_picture{ /* Photo sur l'index */
+	margin-bottom: 20px;
+}
+
+#block_info{ /* Bloc avec l'adresse */
+	margin-left: 10px;
+	margin-top: 100px;
+}
+
+/* ====================================
+        FILM - INDEX.HTML.TWIG
+======================================= */
+
+/* --- Modal de confirmation pour la location --- */
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{ /* Contenu du modal */
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close{ /* Croix pour fermer */
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- Contenu du tableau --- */
+
+#liste_film { /* Tableau */
+    width: 1500px !important;
+    margin-left: 10px;
+}
+
+.content_table{ /* Titre des colonnes */
+    text-align: center;
+    background-color: lightgrey;
+    border: 1px solid black !important;
+}
+
+#img_movie{ /* Image du film */
+	width: 200px;
+	height: 320px;
+}
+
+#title{ /* Colonne du titre */
+    width: 100px;
+}
+
+#desc{ /* Colonne de  la description */
+    width: 500px;
+}
+
+#date{ /* Colonne de la date */
+    width: 55px;
+    text-align: center;
+}
+
+#time{ /* Colonne de la durée */
+    width: 70px;
+    text-align: center;
+}
+
+#btnEdit_admin, #btnSup_admin{ /* Boutons éditer et supprimer */
+    width: 65%;
+    margin-bottom: 10px;
+}
+
+#btnLocation{
+    margin-right: 10px
+}
+
+/* ====================================
+        FILM - NEW.HTML.TWIG
+======================================= */
+
+#appbundle_film{ /* Formulaire */
+    width: 50%;
+}
+
+/* ====================================
+        FILM - EDIT.HTML.TWIG
+======================================= */
+
+ #btnSupFilm_admin{ /* Boutons valider et supprimer */
+    width: 6%;
+    display: inline-block;
+}
+
+/* ====================================
+        FILM - SHOW.HTML.TWIG
+======================================= */
+
+#detail_films{ /* Tableau */
+    width: 690px;
+}
+
+.content_table_details{ /* Colonnes à gauche */
+    text-align: center;
+    background-color: lightgrey;
+    border: 1px solid black !important;
+    width: 150px;
+}
+
+#content_table_description{ /* Colonne description */
+    background-color: lightgrey;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 38px;
+}
+
+#content_table_couverture{ /* Colonne couverture */
+    background-color: lightgrey;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 150px;
+}
+
+/* ====================================
+        ACTEUR - INDEX.HTML.TWIG
+======================================= */
+
+#liste_acteur{ /* Tableau */
+    width: 900px !important;
+}
+
+#img_acteur{ /* Image de l'acteur */
+	width: 200px !important;
+	height: 300px !important;
+}
+
+#action_admin{ /* Boutons éditer et supprimer */
+    width: 225px;
+    text-align: center;
+}
+
+/* ====================================
+        ACTEUR - NEW.HTML.TWIG
+======================================= */
+
+#appbundle_acteur{ /* Formulaire */
+    width: 50%;
+}
+
+/* ====================================
+        ACTEUR - EDIT.HTML.TWIG
+======================================= */
+
+#btnEditActeur_admin, #btnSupActeur_admin{ /* Boutons valider et supprimer */
+    width: 6%;
+    display: inline-block;
+}
+
+/* ====================================
+        ACTEUR - SHOW.HTML.TWIG
+======================================= */
+
+#detail_acteurs{ /* Tableau */
+    width: 340px;
+}
+
+#btn_edit, #btn_sup{ /* Boutons éditer et supprimer */
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#link_back{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+#content_table_photo{ /* Colonne photo */
+    background-color: lightgrey;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 150px;
+}
+
+/* ====================================
+        CATEGORIE - INDEX.HTML.TWIG
+======================================= */
+
+#liste_categorie{/* Tableau */
+    width: 600px;
+}
+
+/* ====================================
+        CATEGORIE - EDIT.HTML.TWIG
+======================================= */
+
+#appbundle_categorie{/* Formulaire */
+    width: 50%;
+}
+
+#btnEditCat_admin, #btnSupCat_admin{
+    width: 6%;
+    display: inline-block;
+}
+
+/* ====================================
+        CATEGORIE - SHOW.HTML.TWIG
+======================================= */
+
+#detail_categories{
+    width: 380px;
+}
+
+#filmByCat{
+    width: 200px;
+}
+
+/* ====================================
+            FOSUSER BUNDLE
+======================================= */
+
+.fieldset_margin{ /* Tous les fieldsets = différents formulaires bootstrap */
+	margin-left: 5px;
+}
+
+/* --- Formulaire connexion --- */
+
+#authentification{ /* formulaire */
+	margin-left: 5px;
+}
+
+#login{ /* Champ login */
+	margin-left: 15px;
+}
+
+#mdp{ /* Champ mot de passe */
+	margin-left: 39px;
+}
+
+#btnConnexion{ /* Bouton de connexion */
+	margin-left: 110px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#lost_mdp{ /* Mot de passe oublié */
+	margin-left: 25px;
+}
+
+/* --- Formulaire inscription --- */
+
+#fos_user_registration_form{ /* Formulaire */
+	margin-left: 5px !important;
+	width: 50%;
+}
+
+#btnInscription{ /* Bouton inscription */
+	margin-left: 666px;
+	margin-bottom: 20px;
+}
+
+/* --- Edition du profil --- */
+
+#fos_user_profile_form{ /* Formulaire */
+	width: 50%;
+}
+
+#btnMAJ{ /* Bouton mettre à jour */
+	margin-left: 688px;
+}
+
+/* --- Changement du mot de passe --- */
+
+#fos_user_change_password_form{ /* Formulaire */
+	width: 50%;
+}
+
+#btnModifier{ /* Bouton modifier */
+	margin-left: 720px;
+}

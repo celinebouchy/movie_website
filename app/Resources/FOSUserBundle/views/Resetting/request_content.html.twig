@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<a href=" {{ path('homepage') }} ">Accueil</a> > <a href=" {{ path('espace_membre') }} ">Profil</a> > Changer mon mot de passe<br><br>
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+
+    <fieldset class="fieldset_margin">
+        <legend>Changement de mot de passe</legend>
+
+            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" id="username" name="username" required="required" />
+            <input id="btnReset" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+
+    </fieldset>
+</form>

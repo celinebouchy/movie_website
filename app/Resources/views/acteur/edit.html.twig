@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(edit_form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Édition d'un acteur</legend>
+
+        {% if is_granted('ROLE_ADMIN') %}
+
+            {{ form_widget(edit_form) }}
+                <a href="{{ path('acteur_index', { 'idActeur': acteur.idActeur }) }}"><button id="btnEditActeur_admin" type="submit" class="btn btn-warning">Valider</button></a>
+            {{ form_end(edit_form) }}
+
+            <div id="btnSupActeur_admin">
+                {{ form_start(delete_form) }}
+                    <a href="{{ path('acteur_delete', { 'idActeur': acteur.idActeur }) }}"><button type="submit" class="btn btn-danger">Supprimer</button></a>
+                {{ form_end(delete_form) }}
+            </div>
+
+        {% endif %}
+
+        <!-- Retour -->
+        <div id="link_back">
+            <a href="{{ path('acteur_index') }}">Retour à la liste</a>
+        </div>
+    </fieldset>
+
+{% endblock %}

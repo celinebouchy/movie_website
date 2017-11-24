@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Accueil</h1>
+
+Clubix est un vidéo club qui permet aux internautes de louer leurs films depuis chez eux et de venir les récupérer en magasin.<br><br>
+
+<div id="block_picture" class="col-md-5">
+    <img id="home_picture" src="{{ asset('bundles/app/img/video_club.jpg') }}" alt="video_club"><br><br>
+</div>
+<div id="block_info" class="col-md-6">
+    Pour venir chez nous :<br><br>
+
+    <span class="glyphicon glyphicon-map-marker"></span> Adresse : 3 Avenue Général de Gaulle, Toulouse 31000<br>
+    <span class="glyphicon glyphicon-earphone"></span> Téléphone : 05.72.54.98.00<br>
+    <span class="glyphicon glyphicon-pencil"></span> Mail : clubix@gmail.com
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

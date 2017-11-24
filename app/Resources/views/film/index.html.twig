@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="info_alert_index_film" class="alert alert-info">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <p>Cliquez sur le nom du film pour voir ses détails.</p>
+    </div>
+
+    <h1>Liste des films</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('film_new') }}"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un film</a></button><br><br>
+    {% endif %}
+
+    <table id="liste_film" class="table table-bordered table-inverse">
+        <thead>
+            <tr>
+                <th class="content_table">Couverture</th>
+                <th class="content_table">Titre</th>
+                <th class="content_table">Description</th>
+                <th class="content_table">Date de sortie</th>
+                <th class="content_table">Durée</th>
+                <th class="content_table">Genre</th>
+                <th class="content_table">Acteurs</th>
+                <th class="content_table">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for film in films %}
+            <tr>
+                <td><img id="img_movie" src="{{ film.photo }}"></td>
+                <td id="title"><a href="{{ path('film_show', { 'numFilm': film.numFilm }) }}">{{ film.titre }}</a></td>
+                <td id="desc">{{ film.description }}</td>
+                <td id="date">{{ film.dateSortie|date("d/m/Y") }}</td>
+                <td id="time">{% if film.duree %}{{ film.duree|date('H:i:s') }}{% endif %}</td>
+
+                <!-- Récupération des catégories pour le film courant -->
+                <td id="film_categories">
+                    {% for categorie in film.getCategories() %}
+                        • {{ categorie.nomCat }}<br>
+                    {% endfor %}
+                </td>
+
+                <!-- Récupération des acteurs pour le film courant -->
+                <td id="liste_acteurs">
+                    {% for acteur in film.getActeurs() %}
+                        • {{ acteur.prenomActeur }} {{ acteur.nomActeur }}<br>
+                    {% endfor %}
+                </td>
+
+                <td id="action_admin">
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <a href="{{ path('film_edit', { 'numFilm': film.numFilm }) }}"><button id="btnEdit_admin" type="button" class="btn btn-warning">Éditer</button></a>
+                        <a href="{{ path('film_delete', { 'numFilm': film.numFilm }) }}"><button id="btnSup_admin" type="button" class="btn btn-danger">Supprimer</button></a>
+
+                    {% endif %}
+                    {% if not is_granted('ROLE_ADMIN') %}
+                       <button id="btnLocation" type="button" class="btn btn-default btnLocation">Louer ce film</button>
+                    {% endif %}
+                </td>
+
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div id="success_alert_location_film" class="alert alert-success">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <p>Vous venez de louer ce film, merci !</p>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

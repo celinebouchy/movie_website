@@ -1,0 +1,19 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<a href=" {{ path('homepage') }} ">Accueil</a> > <a href=" {{ path('espace_membre') }} ">Profil</a> > Editer mon profil<br><br>
+
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+
+    {{ form_errors(form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Edition du profil</legend>
+
+        {{ form_widget(form) }}
+
+        <div>
+            <input id="btnMAJ" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        </div>
+    </fieldset>
+
+{{ form_end(form) }}

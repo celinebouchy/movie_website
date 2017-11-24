@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <a href=" {{ path('homepage') }} ">Accueil</a> > <a href=" {{ path('fos_user_resetting_request') }} ">Réinitialiser mon mot de passe</a> > Demande envoyée<br><br>
+
+    <fieldset>
+        <legend>Demande envoyée</legend>
+
+        <div id="success_alert_check_email" class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <p>Votre demande a bien été envoyée.</p>
+        </div>
+
+        <p>{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+
+    </fieldset>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href=" {{ path('categorie_index') }} ">Liste des genres</a> > Détails du genre<br>
+
+    <h1>Détails du genre</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <!-- Édition -->
+        <div id="btn_edit">
+            <a href="{{ path('categorie_edit', { 'idCat': categorie.idCat }) }}"><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Éditer</button></a>
+        </div>
+
+         <!-- Suppression -->
+        <div id="btn_sup">
+            {{ form_start(delete_form) }}
+                <a href="{{ path('categorie_delete', { 'idCat': categorie.idCat }) }}"><button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></a>
+            {{ form_end(delete_form) }}
+        </div>
+
+    {% endif %}
+
+    <!-- Retour -->
+    <div id="link_back">
+        <a href="{{ path('categorie_index') }}">Retour à la liste des genres</a>
+    </div><br><br>
+
+    <table id="detail_categories" class="table table-bordered table-inverse">
+        <tbody>
+            <tr>
+                <th class="content_table">Nom du genre</th>
+                <td>{{ categorie.nomCat }}</td>
+            </tr>
+            <tr>
+                <th class="content_table">Films</th>
+                <td id="filmByCat">
+                    {% for film in categorie.getFilms() %}
+                        • <a href="{{ path('film_show', { 'numFilm': film.numFilm }) }}">{{ film.titre }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

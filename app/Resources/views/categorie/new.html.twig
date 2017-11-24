@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Création d'un genre</legend>
+
+        {{ form_widget(form) }}
+
+        <div>
+            <a href="{{ path('categorie_new') }}"><button type="submit" class="btn btn-warning">Créer</button></a>
+            <a href="{{ path('categorie_index') }}">Retour à la liste</a>
+        </div>
+
+    </fieldset>
+
+    {{ form_end(form) }}
+
+{% endblock %}

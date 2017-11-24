@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<!-- Fil d'ariane -->
+	<a href=" {{ path('homepage') }} ">Accueil</a> > Liste des acteurs
+
+	<h2>Liste des films</h2>
+
+	<table id="liste_acteur" class="table table-bordered table-inverse">
+		<thead>
+			<th class="content_table">Photo</th>
+			<th class="content_table">Prénom de l'acteur</th>
+			<th class="content_table">Nom de l'acteur</th>
+		</thead>
+
+		{% for acteur in acteurs %}
+
+			<tbody>
+				<td><img id="img_actor" src="{{ acteur.picture }}"></td>
+				<td>{{ acteur.prenomActeur }}</td>
+				<td>{{ acteur.nomActeur }}</td>
+			</tbody>
+
+		{% endfor %}
+	</table>
+
+{% endblock %}

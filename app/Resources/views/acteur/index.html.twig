@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="info_alert_index_acteur" class="alert alert-info">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <p>Cliquez sur le nom de l'acteur pour voir ses détails.</p>
+    </div>
+
+    <h1>Liste des acteurs</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('acteur_new') }}"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un acteur</a></button><br><br>
+    {% endif %}
+
+    <table id="liste_acteur" class="table table-bordered table-inverse">
+        <thead>
+            <tr>
+                <th class="content_table">Photo</th>
+                <th class="content_table">Prénom</th>
+                <th class="content_table">Nom</th>
+                <th class="content_table">Nom complet</th>
+                <th class="content_table">Films</th>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th class="content_table">Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for acteur in acteurs %}
+            <tr>
+                <td><img id="img_acteur" src="{{ acteur.photo }}">
+                </td>
+                <td>{{ acteur.prenomActeur }}</td>
+                <td>{{ acteur.nomActeur }}</td>
+                <td><a href="{{ path('acteur_show', { 'idActeur': acteur.idActeur }) }}">{{ acteur.nomComplet }}</a></td>
+
+                <td id="liste_films">
+                    {% for film in acteur.getFilms() %}
+                        • {{ film.titre }}<br>
+                    {% endfor %}
+                </td>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <a href="{{ path('acteur_edit', { 'idActeur': acteur.idActeur }) }}"><button id="btnEdit_admin" type="button" class="btn btn-warning">Éditer</button></a>
+                        <a href="{{ path('acteur_delete', { 'idActeur': acteur.idActeur }) }}"><button id="btnSup_admin" type="submit" class="btn btn-danger">Supprimer</button></a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

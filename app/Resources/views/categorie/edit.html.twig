@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(edit_form) }}
+
+        <fieldset class="fieldset_margin">
+            <legend>Édition d'un genre</legend>
+
+            {% if is_granted('ROLE_ADMIN') %}
+
+                <!-- Edition de la catégorie -->
+                {{ form_widget(edit_form) }}
+                    <a href="{{ path('categorie_edit', { 'idCat': categorie.idCat }) }}"><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Éditer</button></a>
+                {{ form_end(edit_form) }}
+
+                <!-- Suppression de la catégorie -->
+                <div id="btnSupCat_admin">
+                    {{ form_start(delete_form) }}
+                        <a href="{{ path('categorie_delete', { 'idCat': categorie.idCat }) }}"><button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</button></a>
+                    {{ form_end(delete_form) }}
+                </div>
+
+            {% endif %}
+
+        <!-- Retour -->
+        <div id="link_back">
+            <a href="{{ path('categorie_index') }}">Retour à la liste</a>
+        </div>
+    </fieldset>
+
+{% endblock %}

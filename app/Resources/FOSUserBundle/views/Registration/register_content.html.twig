@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<a href=" {{ path('homepage') }} ">Accueil</a> > Inscription<br><br>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    {{ form_errors(form) }}
+
+    <fieldset class="fieldset_margin">
+        <legend>Inscription</legend>
+
+        {{ form_widget(form) }}
+
+        <div>
+            <input id="btnInscription" type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+
+    </fieldset>
+
+{{ form_end(form) }}
